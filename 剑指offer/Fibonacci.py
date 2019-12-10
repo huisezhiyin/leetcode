@@ -5,11 +5,9 @@ class Solution:
             return n
         s = 1
         one = 0
-
         for index in range(2, n + 1):
             s = s + one
             one = s - one
-
         return s
 
 

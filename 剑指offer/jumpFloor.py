@@ -3,7 +3,6 @@ class Solution:
     def jumpFloor(self, number):
         if number <= 2:
             return number
-
         result = 0
         n, m = 1, 2
         for i in range(number - 2):
