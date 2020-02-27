@@ -17,6 +17,8 @@ class Borad(object):
     @staticmethod
     def check_list(lst):
         # 行列检查器
+        if None in lst or 0 in lst:
+            return False
         return any(lst[i] == lst[i + 1] and lst[i] == lst[i + 2] for i in range(len(lst) - 2))
 
     def init_board(self):
@@ -38,10 +40,10 @@ class Borad(object):
         if col <= 1:
             raise Exception("error")
         # 此数字竖向不能有三连
-        if board[col - 1][row] != 0 and board[col - 1][row] == board[col - 2][row]:
+        if board[col - 1][row] == board[col - 2][row]:
             tmp_list.remove(board[col - 1][row])
         if row > 1:
-            # 横向上如果此数字前面超过两个数字 那横向不能有三辆
+            # 横向上如果此数字前面超过两个数字 那横向不能有三连
             if (board[col][row - 1] == board[col][row - 2]) and (board[col][row - 1] in tmp_list):
                 tmp_list.remove(board[col][row - 1])
         return random.choice(tmp_list)
@@ -50,13 +52,14 @@ class Borad(object):
     def one_dimensional_array():
         # 生成合法的随机一维数组
         array = [0 for x in range(9)]
+        array[0] = random.choice([1, 2, 3, 4])
+        array[1] = random.choice([1, 2, 3, 4])
         for index_count in range(2, 9):
             tmp_list = [1, 2, 3, 4]
-            if array[index_count - 1] != 0 and array[index_count - 1] == array[index_count - 2]:
+            if array[index_count - 1] == array[index_count - 2]:
                 tmp_list.remove(array[index_count - 1])
             tmp_num = random.choice(tmp_list)
-            if tmp_num != array[index_count]:
-                array[index_count] = tmp_num
+            array[index_count] = tmp_num
         return array
 
 
@@ -64,4 +67,5 @@ if __name__ == '__main__':
     a = Borad()
     t = a.init_board()
     success = a.check_board(t)
-    print(success)
+    for k in t:
+        print(k)
