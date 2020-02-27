@@ -54,7 +54,7 @@ class Borad(object):
         array[1] = random.choice([1, 2, 3, 4])
         for index_count in range(2, 9):
             tmp_list = [1, 2, 3, 4]
-            if array[index_count - 1] and array[index_count - 1] == array[index_count - 2]
+            if array[index_count - 1] and array[index_count - 1] == array[index_count - 2]:
                 tmp_list.remove(array[index_count - 1])
             tmp_num = random.choice(tmp_list)
             array[index_count] = tmp_num
