@@ -53,11 +53,10 @@ class Borad(object):
         array[0] = random.choice([1, 2, 3, 4])
         array[1] = random.choice([1, 2, 3, 4])
         for index_count in range(2, 9):
-            tmp_num = random.choice([1, 2, 3, 4])
-            if tmp_num == array[index_count - 1] and tmp_num == array[index_count - 2]:
-                tmp_list = [1, 2, 3, 4]
-                tmp_list.remove(tmp_num)
-                tmp_num = random.choice(tmp_list)
+            tmp_list = [1, 2, 3, 4]
+            if array[index_count - 1] and array[index_count - 1] == array[index_count - 2]
+                tmp_list.remove(array[index_count - 1])
+            tmp_num = random.choice(tmp_list)
             array[index_count] = tmp_num
         return array
 
