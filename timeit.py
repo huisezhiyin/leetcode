@@ -24,3 +24,13 @@ def timeit(max_time: int):
         return warnning
 
     return wrape
+
+
+
+if __name__ == '__main__':
+    @timeit(5)
+    def a():
+        for i in range(15):
+            print(i)
+            time.sleep(1)
+    a()
