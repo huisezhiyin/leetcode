@@ -6,19 +6,19 @@ class Borad(object):
     def check_board(self, board):
         # 检查器
         for row in board:
-            if self.check_list(row):
+            if self.list_error(row):
                 return False
         for i in range(len(board[0])):
             col = [row[i] for row in board]
-            if self.check_list(col):
+            if self.list_error(col):
                 return False
         return True
 
     @staticmethod
-    def check_list(lst):
-        # 行列检查器
+    def list_error(lst):
+        # 行列检查器 有问题返回True
         if None in lst or 0 in lst:
-            return False
+            return True
         return any(lst[i] == lst[i + 1] and lst[i] == lst[i + 2] for i in range(len(lst) - 2))
 
     def init_board(self):
@@ -69,3 +69,4 @@ if __name__ == '__main__':
     success = a.check_board(t)
     for k in t:
         print(k)
+    
