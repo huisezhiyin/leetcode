@@ -25,7 +25,7 @@ class Borad(object):
         board[1] = self.one_dimensional_array()
         for count_index_col in range(2, 9):
             # 初始化
-            board[count_index_col] = [None for x in range(9)]
+            board[count_index_col] = [random.choice([1, 2, 3, 4]) for x in range(9)]
             for count_index_row in range(9):
                 board[count_index_col][count_index_row] = self.one_num(board, count_index_col, count_index_row)
         return board
@@ -49,20 +49,18 @@ class Borad(object):
     @staticmethod
     def one_dimensional_array():
         # 生成合法的随机一维数组
-        array = [None for x in range(9)]
-        array[0] = random.choice([1, 2, 3, 4])
-        array[1] = random.choice([1, 2, 3, 4])
+        array = [random.choice([1, 2, 3, 4]) for x in range(9)]
         for index_count in range(2, 9):
             tmp_list = [1, 2, 3, 4]
-            if array[index_count - 1] and array[index_count - 1] == array[index_count - 2]:
+            if array[index_count - 1] is not None and array[index_count - 1] == array[index_count - 2]:
                 tmp_list.remove(array[index_count - 1])
             tmp_num = random.choice(tmp_list)
-            array[index_count] = tmp_num
+            if tmp_num != array[index_count]:
+                array[index_count] = tmp_num
         return array
 
 
 if __name__ == '__main__':
     a = Borad()
     t = a.init_board()
-    if a.check_board(t):
-        print("success")
+    print(a.check_board(t))
