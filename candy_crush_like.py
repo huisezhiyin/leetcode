@@ -25,7 +25,7 @@ class Borad(object):
         board[1] = self.one_dimensional_array()
         for count_index_col in range(2, 9):
             # 初始化
-            board[count_index_col] = [random.choice([1, 2, 3, 4]) for x in range(9)]
+            board[count_index_col] = [0 for x in range(9)]
             for count_index_row in range(9):
                 board[count_index_col][count_index_row] = self.one_num(board, count_index_col, count_index_row)
         return board
@@ -38,7 +38,7 @@ class Borad(object):
         if col <= 1:
             raise Exception("error")
         # 此数字竖向不能有三连
-        if board[col - 1][row] == board[col - 2][row]:
+        if board[col - 1][row] != 0 and board[col - 1][row] == board[col - 2][row]:
             tmp_list.remove(board[col - 1][row])
         if row > 1:
             # 横向上如果此数字前面超过两个数字 那横向不能有三辆
@@ -49,10 +49,10 @@ class Borad(object):
     @staticmethod
     def one_dimensional_array():
         # 生成合法的随机一维数组
-        array = [random.choice([1, 2, 3, 4]) for x in range(9)]
+        array = [0 for x in range(9)]
         for index_count in range(2, 9):
             tmp_list = [1, 2, 3, 4]
-            if array[index_count - 1] is not None and array[index_count - 1] == array[index_count - 2]:
+            if array[index_count - 1] != 0 and array[index_count - 1] == array[index_count - 2]:
                 tmp_list.remove(array[index_count - 1])
             tmp_num = random.choice(tmp_list)
             if tmp_num != array[index_count]:
@@ -63,4 +63,5 @@ class Borad(object):
 if __name__ == '__main__':
     a = Borad()
     t = a.init_board()
-    print(a.check_board(t))
+    success = a.check_board(t)
+    print(success)
